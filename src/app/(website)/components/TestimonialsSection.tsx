@@ -1,5 +1,4 @@
 import { Star } from "lucide-react";
-import { Button } from "@/ui/button";
 
 export default function TestimonialsSection() {
   return (
@@ -22,8 +21,9 @@ export default function TestimonialsSection() {
               <Star className="h-8 w-8 text-yellow-400" />
             </div>
             <p className="text-lg font-semibold text-gray-900">
-              "Walletly has transformed how we handle digital wallet onboarding.
-              It's seamless, secure, and super easy to integrate."
+              &quot;Walletly has transformed how we handle digital wallet
+              onboarding. It&#39;s seamless, secure, and super easy to
+              integrate.&quot;
             </p>
             <p className="mt-4 text-gray-500">John Doe</p>
             <p className="text-sm text-gray-400">
@@ -36,8 +36,8 @@ export default function TestimonialsSection() {
               <Star className="h-8 w-8 text-yellow-400" />
             </div>
             <p className="text-lg font-semibold text-gray-900">
-              "The customization options are fantastic! We’ve been able to
-              tailor the user experience to fit our brand perfectly."
+              &quot;The customization options are fantastic! We&#39;ve been able
+              to tailor the user experience to fit our brand perfectly.&quot;
             </p>
             <p className="mt-4 text-gray-500">Jane Smith</p>
             <p className="text-sm text-gray-400">CTO, SecureWallets</p>
@@ -48,8 +48,9 @@ export default function TestimonialsSection() {
               <Star className="h-8 w-8 text-yellow-400" />
             </div>
             <p className="text-lg font-semibold text-gray-900">
-              "We’ve seen a major improvement in user retention and conversion
-              rates since implementing Walletly. Highly recommended!"
+              &quot;We&#39;ve seen a major improvement in user retention and
+              conversion rates since implementing Walletly. Highly
+              recommended!&quot;
             </p>
             <p className="mt-4 text-gray-500">Robert Johnson</p>
             <p className="text-sm text-gray-400">Founder, WalletMaster</p>

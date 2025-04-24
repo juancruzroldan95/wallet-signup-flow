@@ -4,9 +4,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/ui/accordion";
-import { HelpCircle } from "lucide-react";
-import { Button } from "@/ui/button";
-import Link from "next/link";
 
 export default function FaqSection() {
   return (

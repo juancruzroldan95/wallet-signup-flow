@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, ScrollText, Search } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Button } from "@/ui/button";
 
 export default function FinalCTASection() {
@@ -10,7 +10,7 @@ export default function FinalCTASection() {
           Give your users the signup experience they deserve
         </h2>
         <p className="mt-4 text-lg text-gray-600">
-          Whether you're launching your first wallet or scaling globally,
+          Whether you&#39;re launching your first wallet or scaling globally,
           Walletly is your best first impression.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
