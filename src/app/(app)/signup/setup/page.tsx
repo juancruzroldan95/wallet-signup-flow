@@ -1,5 +1,12 @@
-import React from "react";
+import SignupSetupForm from "../../features/signup/components/SignupSetupForm";
 
 export default function SignupSetupPage() {
-  return <div>SignupSetupPage</div>;
+  const currenciesData = [
+    { value: "usd", label: "USD" },
+    { value: "eur", label: "EUR" },
+    { value: "gbp", label: "GBP" },
+    { value: "jpy", label: "JPY" },
+  ]; // await fetchCurrencies()...
+
+  return <SignupSetupForm currencies={currenciesData} />;
 }

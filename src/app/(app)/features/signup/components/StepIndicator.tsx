@@ -40,12 +40,7 @@ export default function StepIndicator({
             </div>
 
             {index < steps.length - 1 && (
-              <div
-                className={cn(
-                  "h-px w-8",
-                  isCompleted ? "bg-primary" : "bg-muted"
-                )}
-              />
+              <div className={cn(isCompleted ? "bg-primary" : "bg-muted")} />
             )}
           </div>
         );

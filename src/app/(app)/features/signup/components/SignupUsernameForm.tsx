@@ -20,8 +20,7 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input } from "@/ui/input";
-
-const existingEmails = ["alreadytaken@gmail.com"]; // Mock existing emails - usually fetched from the server
+import { useSignupStore } from "../store";
 
 const signupUsernameSchema = signupSchema.pick({
   username: true,
@@ -40,6 +39,8 @@ export default function SignupUsernameForm({
 }: SignupUsernameFormProps) {
   const router = useRouter();
 
+  const setData = useSignupStore((state) => state.setData);
+
   const form = useForm<SignupUsernameSchema>({
     resolver: zodResolver(signupUsernameSchema),
     defaultValues: {
@@ -50,7 +51,6 @@ export default function SignupUsernameForm({
   });
 
   async function onSubmit(values: SignupUsernameSchema) {
-    console.log("onSubmit", values);
     await new Promise((resolve) => setTimeout(resolve, 200));
 
     if (registeredEmails.includes(values.email.toLowerCase())) {
@@ -61,6 +61,7 @@ export default function SignupUsernameForm({
       return;
     }
 
+    setData(values);
     router.push("/signup/kyc");
   }
 

@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import { Country } from "@/types/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Country } from "@/types/types";
 import { format } from "date-fns";
 import { CalendarIcon, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -32,6 +32,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/ui/select";
+import { useSignupStore } from "../store";
 
 const signupKycSchema = signupSchema.pick({
   fullName: true,
@@ -50,6 +51,12 @@ interface SignupKycFormProps {
 export default function SignupKycForm({ countries }: SignupKycFormProps) {
   const router = useRouter();
 
+  const { username, email, password, hasHydrated } = useSignupStore(
+    (state) => state
+  );
+
+  const setData = useSignupStore((state) => state.setData);
+
   const form = useForm<SignupKycSchema>({
     resolver: zodResolver(signupKycSchema),
     defaultValues: {
@@ -62,7 +69,6 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
   });
 
   async function onSubmit(values: SignupKycSchema) {
-    console.log("onSubmit", values);
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const selectedCountry = countries.find(
@@ -77,8 +83,17 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
       return;
     }
 
+    setData(values);
     router.push("/signup/setup");
   }
+
+  useEffect(() => {
+    if (!hasHydrated) return;
+
+    if (!username || !email || !password) {
+      router.push("/signup/username");
+    }
+  }, [hasHydrated, username, email, password, router]);
 
   return (
     <Form {...form}>

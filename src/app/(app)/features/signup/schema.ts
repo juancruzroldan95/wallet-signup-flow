@@ -21,8 +21,8 @@ export const signupSchema = z.object({
   governmentId: z.string().min(3, "ID number is required"),
   recoveryEmail: z.string().email("Must be a valid email"),
   currency: z.string().min(1, "Currency selection is required"),
-  terms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms" }),
+  terms: z.coerce.boolean().refine((bool) => bool == true, {
+    message: "You must agree to our terms and conditions",
   }),
 });
 
