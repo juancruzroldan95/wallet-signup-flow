@@ -15,6 +15,7 @@ export default function FinalCTASection() {
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
           <Button
+            asChild
             size="lg"
             variant="default"
             className="text-lg flex items-center px-8 py-6 font-semibold hover:text-white"

@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Country } from "@/types/types";
 import { format } from "date-fns";
-import { CalendarIcon, ChevronLeft, Loader2 } from "lucide-react";
+import { CalendarIcon, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signupSchema } from "../schema";
@@ -34,6 +34,7 @@ import {
 } from "@/ui/select";
 import { useSignupStore } from "../store";
 import FormTransition from "./FormTransition";
+import { Progress } from "@/ui/progress";
 
 const signupKycSchema = signupSchema.pick({
   fullName: true,
@@ -41,6 +42,7 @@ const signupKycSchema = signupSchema.pick({
   address: true,
   country: true,
   governmentId: true,
+  governmentFile: true,
 });
 
 type SignupKycSchema = z.infer<typeof signupKycSchema>;
@@ -50,6 +52,9 @@ interface SignupKycFormProps {
 }
 
 export default function SignupKycForm({ countries }: SignupKycFormProps) {
+  const [progress, setProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [startUploading, setStartUploading] = useState(false);
   const router = useRouter();
 
   const {
@@ -70,12 +75,32 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
     resolver: zodResolver(signupKycSchema),
     defaultValues: {
       fullName: fullName || "",
-      dob: dob || undefined,
+      dob: dob ? new Date(dob) : undefined,
       address: address || "",
       country: country || "",
       governmentId: governmentId || "",
+      governmentFile: "",
     },
   });
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setIsUploading(true);
+      setStartUploading(true);
+      setProgress(0);
+
+      const interval = setInterval(() => {
+        setProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(interval);
+            setIsUploading(false);
+            return 100;
+          }
+          return prev + 25;
+        });
+      }, 1000);
+    }
+  };
 
   async function onSubmit(values: SignupKycSchema) {
     await new Promise((resolve) => setTimeout(resolve, 200));
@@ -122,7 +147,7 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
 
           <StepIndicator current={2} />
 
-          <div className="grid gap-6">
+          <div className="grid gap-5">
             <FormField
               control={form.control}
               name="fullName"
@@ -227,7 +252,7 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
               name="governmentId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Government-issued ID</FormLabel>
+                  <FormLabel>Government ID</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="National ID, Passport, etc."
@@ -235,6 +260,38 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="governmentFile"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Upload ID Document</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      id="governmentFile"
+                      {...field}
+                      onChange={(e) => {
+                        field.onChange(e);
+                        handleFileUpload(e);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                  {startUploading && (
+                    <div className="mt-2">
+                      <Progress value={progress} className="w-full" />
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {progress < 100
+                          ? "Validating..."
+                          : "Verification complete!"}
+                      </p>
+                    </div>
+                  )}
                 </FormItem>
               )}
             />
@@ -251,7 +308,7 @@ export default function SignupKycForm({ countries }: SignupKycFormProps) {
               <Button
                 type="submit"
                 className="w-full cursor-pointer"
-                disabled={form.formState.isSubmitting}
+                disabled={form.formState.isSubmitting || isUploading}
               >
                 {form.formState.isSubmitting ? (
                   <>

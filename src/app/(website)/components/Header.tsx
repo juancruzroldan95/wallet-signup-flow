@@ -28,6 +28,7 @@ export default function Header() {
 
         <div className="flex items-center md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse">
           <Button
+            asChild
             size="lg"
             className="text-md md:font-semibold hover:text-white"
           >

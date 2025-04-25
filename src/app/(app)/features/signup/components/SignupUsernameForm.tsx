@@ -14,6 +14,7 @@ import { Button } from "@/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -73,7 +74,7 @@ export default function SignupUsernameForm({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-6"
+          className="flex flex-col gap-5"
         >
           <div className="flex flex-col items-center gap-2 text-center">
             <h1 className="text-2xl font-bold text-primary">
@@ -86,7 +87,7 @@ export default function SignupUsernameForm({
 
           <StepIndicator current={1} />
 
-          <div className="grid gap-6">
+          <div className="grid gap-4">
             <FormField
               control={form.control}
               name="username"
@@ -126,12 +127,11 @@ export default function SignupUsernameForm({
                 <FormItem>
                   <FormLabel>Create a password</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="At least 8 characters"
-                      {...field}
-                    />
+                    <Input type="password" placeholder="*******" {...field} />
                   </FormControl>
+                  <FormDescription>
+                    At least 8 characters, one number and one uppercase letter.
+                  </FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

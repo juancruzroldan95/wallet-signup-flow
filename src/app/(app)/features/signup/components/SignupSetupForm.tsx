@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Currency } from "@/types/types";
-import { Loader2 } from "lucide-react";
+import { DollarSign, HelpCircle, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signupSchema } from "../schema";
@@ -31,6 +31,7 @@ import {
 } from "@/ui/select";
 import { useSignupStore } from "../store";
 import FormTransition from "./FormTransition";
+import { currenciesIcons } from "@/lib/CurrencyIcon";
 
 const signupSetupSchema = signupSchema.pick({
   recoveryEmail: true,
@@ -59,6 +60,8 @@ export default function SignupSetupForm({ currencies }: SignupSetupFormProps) {
     hasHydrated,
   } = useSignupStore((state) => state);
 
+  const setData = useSignupStore((state) => state.setData);
+
   const form = useForm<SignupSetupSchema>({
     resolver: zodResolver(signupSetupSchema),
     defaultValues: {
@@ -85,6 +88,7 @@ export default function SignupSetupForm({ currencies }: SignupSetupFormProps) {
     };
 
     console.log("Final payload:", payload);
+    setData(values);
     router.push("/signup/success");
   }
 
@@ -131,7 +135,7 @@ export default function SignupSetupForm({ currencies }: SignupSetupFormProps) {
 
           <StepIndicator current={3} />
 
-          <div className="grid gap-6">
+          <div className="grid gap-5">
             <FormField
               control={form.control}
               name="recoveryEmail"
@@ -170,7 +174,12 @@ export default function SignupSetupForm({ currencies }: SignupSetupFormProps) {
                             key={currency.value}
                             value={currency.value}
                           >
-                            {currency.label}
+                            <div className="flex items-center gap-2">
+                              {currenciesIcons[
+                                currency.value.toLowerCase() as keyof typeof currenciesIcons
+                              ] ?? <HelpCircle />}{" "}
+                              {currency.label}
+                            </div>
                           </SelectItem>
                         ))}
                       </SelectContent>

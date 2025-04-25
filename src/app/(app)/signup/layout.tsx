@@ -34,7 +34,7 @@ export default function SignupLayout({
           </figure>
         </div>
       </div>
-      <div className="flex flex-col gap-4 p-6 md:p-10">
+      <div className="flex flex-col gap-4 p-6 md:p-10 max-h-screen overflow-y-auto">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link
             href="#"
