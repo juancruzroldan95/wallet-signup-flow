@@ -3,17 +3,19 @@ import { Star } from "lucide-react";
 export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="py-16 bg-primary/10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
-          Testimonials
-        </h2>
-        <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          What Our Users Say
-        </p>
-        <p className="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-          Hear from those who have experienced the benefits of Walletly
-          firsthand.
-        </p>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
+            Testimonials
+          </h2>
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            What Our Users Say
+          </p>
+          <p className="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+            Hear from those who have experienced the benefits of Walletly
+            firsthand.
+          </p>
+        </div>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-12">
           <div className="bg-white shadow-lg rounded-xl p-6 text-center">

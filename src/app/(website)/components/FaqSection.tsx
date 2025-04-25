@@ -8,19 +8,21 @@ import {
 export default function FaqSection() {
   return (
     <section id="faq" className="py-16 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
-          FAQ
-        </h2>
-        <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-          Frequently Asked Questions
-        </p>
-        <p className="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-          Have more questions? We have the answers to help you get started with
-          Walletly.
-        </p>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center">
+          <h2 className="text-base text-primary font-semibold tracking-wide uppercase">
+            FAQ
+          </h2>
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            Frequently Asked Questions
+          </p>
+          <p className="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+            Have more questions? We have the answers to help you get started
+            with Walletly.
+          </p>
+        </div>
 
-        <div className="mt-10">
+        <div className="mt-10 text-center lg:text-left">
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-lg">
