@@ -27,11 +27,14 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center md:order-2 space-x-3 md:space-x-4 rtl:space-x-reverse">
-          <Link href="#get-started" onClick={() => setIsOpen(false)}>
-            <Button size="lg" className="text-md">
+          <Button
+            size="lg"
+            className="text-md md:font-semibold hover:text-white"
+          >
+            <Link href="/signup/username" onClick={() => setIsOpen(false)}>
               Try it for free
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <button
             type="button"
             className="inline-flex items-center p-2 size-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"

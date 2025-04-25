@@ -1,23 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Button } from "@/ui/button";
+import HeroImageBounce from "./HeroImageBounce";
 
 export default function HeroSection() {
   return (
     <section id="hero" className="relative overflow-hidden py-16">
-      <div className="max-w-7xl mx-auto">
-        <div className="relative z-10 pb-5 bg-gray-50 lg:max-w-2xl lg:w-full">
-          <svg
-            className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-gray-50 transform translate-x-1/2"
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            preserveAspectRatio="none"
-            aria-hidden="true"
-          >
-            <polygon points="50,0 100,0 50,100 0,100" />
-          </svg>
-
+      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center">
+        <div className="relative z-10 pb-5 bg-gray-50 lg:max-w-2xl lg:w-1/2">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 text-center lg:text-left md:text-5xl lg:text-6xl">
@@ -34,30 +24,25 @@ export default function HeroSection() {
                 one.
               </p>
               <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/demo">
-                  <Button
-                    size="lg"
-                    variant="default"
-                    className="text-lg px-8 py-6"
+                <Button
+                  size="lg"
+                  variant="default"
+                  className="text-lg flex items-center px-8 py-6 font-semibold hover:text-white"
+                >
+                  <Link
+                    href="/signup/username"
+                    className="flex items-center gap-2"
                   >
                     Try the demo for free
                     <ChevronRight className="size-5" />
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <Image
-            className="h-56 max-w-xl object-cover sm:h-72 md:h-96 lg:w-full"
-            src="https://images.unsplash.com/photo-1640920789307-1df7543f5828"
-            alt="Wallet signup illustration"
-            width={500}
-            height={500}
-          />
-        </div>
+        <HeroImageBounce />
       </div>
     </section>
   );

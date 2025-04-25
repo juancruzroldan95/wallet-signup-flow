@@ -1,7 +1,7 @@
 import SignupUsernameForm from "../../features/signup/components/SignupUsernameForm";
 
-export default function SignupUsernamePage() {
-  const registeredEmailsData = ["alreadytaken@gmail.com"]; // await fetchRegisteredEmails()...
+const registeredEmailsData = ["alreadytaken@gmail.com"]; // await fetchRegisteredEmails()...
 
+export default function SignupUsernamePage() {
   return <SignupUsernameForm registeredEmails={registeredEmailsData} />;
 }

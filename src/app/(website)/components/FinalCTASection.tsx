@@ -14,12 +14,16 @@ export default function FinalCTASection() {
           Walletly is your best first impression.
         </p>
         <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
-          <Link href="/demo">
-            <Button size="lg" variant="default" className="text-lg px-8 py-6">
+          <Button
+            size="lg"
+            variant="default"
+            className="text-lg flex items-center px-8 py-6 font-semibold hover:text-white"
+          >
+            <Link href="/signup/username" className="flex items-center gap-2">
               Try Walletly for Free
               <ChevronRight className="size-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
