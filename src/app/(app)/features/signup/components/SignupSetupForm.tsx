@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Currency } from "@/types/types";
-import { DollarSign, HelpCircle, Loader2 } from "lucide-react";
+import { HelpCircle, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { signupSchema } from "../schema";
